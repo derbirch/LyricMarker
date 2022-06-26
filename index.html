@@ -29,12 +29,24 @@
             console.log(LyricsContainer);
             LyricsContainer.forEach((line, index) => {
                 if(line.trim() != ""){
-                    LyricsContainer[index] = "♪ " + line.trim() + " ♪";
+                    LyricsContainer[index] = "♪ " + ToCDB(line.trim()) + " ♪";
                 }
                 else LyricsContainer[index] = line.trim();
             });
             Dom_inputs.value = LyricsContainer.join("\n");
             console.log(LyricsContainer.join());
+            function ToCDB(str) {
+                var tmp = "";
+                for (var i = 0; i < str.length; i++) {
+                    if (str.charCodeAt(i) > 65248 && str.charCodeAt(i) < 65375) {
+                        tmp += String.fromCharCode(str.charCodeAt(i) - 65248);
+                    }
+                    else {
+                        tmp += String.fromCharCode(str.charCodeAt(i));
+                    }
+                }
+                return tmp
+            }
         }
         </script>
     </body>
